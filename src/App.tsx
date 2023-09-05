@@ -4,7 +4,7 @@ import "./style.css";
 
 export default function App() {
   const [newItem, setNewItem] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault();
@@ -19,7 +19,7 @@ export default function App() {
     setNewItem("");
   }
 
-  function toggleTodo(id, completed) {
+  function toggleTodo(id: string, completed: boolean) {
     setTodos((currentTodos) => {
       return currentTodos.map((todo) => {
         if (todo.id === id) {
@@ -31,7 +31,7 @@ export default function App() {
     });
   }
 
-  function deleteTodo(id) {
+  function deleteTodo(id: string) {
     setTodos((currentTodos) => {
       return currentTodos.filter((todo) => todo.id !== id);
     });
