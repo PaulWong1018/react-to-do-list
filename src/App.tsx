@@ -2,6 +2,12 @@
 import { useState } from "react";
 import "./style.css";
 
+interface Todo {
+  id: string;
+  title: string;
+  completed: boolean;
+}
+
 export default function App() {
   const [newItem, setNewItem] = useState("");
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -12,7 +18,7 @@ export default function App() {
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title: newItem, completed: false },
+        { id: Math.random().toString(), title: newItem, completed: false },
       ];
     });
 
@@ -44,7 +50,7 @@ export default function App() {
           <label htmlFor="item">New Item</label>
           <input
             value={newItem}
-            onInput={(e) => setNewItem(e.target.value)}
+            onChange={(e) => setNewItem(e.target.value)}
             type="text"
             id="item"
           />
