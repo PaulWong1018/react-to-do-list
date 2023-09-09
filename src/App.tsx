@@ -16,10 +16,7 @@ export default function App() {
     e.preventDefault();
 
     setTodos((currentTodos) => {
-      return [
-        ...currentTodos,
-        { id: Math.random().toString(), title: newItem, completed: false },
-      ];
+      return [...currentTodos, { id: Math.random().toString(), title: newItem, completed: false }];
     });
 
     setNewItem("");
@@ -45,42 +42,38 @@ export default function App() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="new-item-form" action="">
-        <div className="form-row">
-          <label htmlFor="item">New Item</label>
-          <input
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-            type="text"
-            id="item"
-          />
+      <div id="card">
+        <div id="card-content">
+          <div id="card-title">
+            <h2>LOGIN</h2>
+            <div className="underline-title"></div>
+          </div>
+          <form onSubmit={handleSubmit} className="new-item-form" action="">
+            <div className="form-row">
+              <label htmlFor="item">New Item</label>
+              <input value={newItem} onChange={(e) => setNewItem(e.target.value)} type="text" id="item" />
+            </div>
+            <button className="btn">Add</button>
+          </form>
+          <h1 className="header">Todo list</h1>
+          <ul className="list">
+            {todos.length === 0 && "Nothing to do"}
+            {todos.map((todo) => {
+              return (
+                <li key={todo.id}>
+                  <label>
+                    <input type="checkbox" checked={todo.completed} onChange={(e) => toggleTodo(todo.id, e.target.checked)} />
+                    {todo.title}
+                  </label>
+                  <button onClick={() => deleteTodo(todo.id)} className="btn btn-danger">
+                    Delete
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <button className="btn">Add</button>
-      </form>
-      <h1 className="header">Todo list</h1>
-      <ul className="list">
-        {todos.length === 0 && "Nothing to do"}
-        {todos.map((todo) => {
-          return (
-            <li key={todo.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onChange={(e) => toggleTodo(todo.id, e.target.checked)}
-                />
-                {todo.title}
-              </label>
-              <button
-                onClick={() => deleteTodo(todo.id)}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      </div>
     </>
   );
 }
