@@ -45,7 +45,7 @@ export default function App() {
       <div id="card">
         <div id="card-content">
           <div id="card-title">
-            <h2>LOGIN</h2>
+            <h2>Todo List</h2>
             <div className="underline-title"></div>
           </div>
           <form onSubmit={handleSubmit} className="new-item-form" action="">
